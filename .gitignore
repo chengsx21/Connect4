@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Binaries
+main
+main.exe
+
 # Compiled Object files
 *.slo
 *.lo
