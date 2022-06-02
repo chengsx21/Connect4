@@ -131,11 +131,11 @@ class AI_Client
                 {
                     point = new Point(-2, -2);
                     send();
-                    delete point;
+                    clearPoint(point);
                     break;
                 }
                 send();
-                delete point;
+                clearPoint(point);
             }
             if(type >= 2) break;
         }
@@ -150,7 +150,7 @@ class AI_Client
     {
         if(board) delete[] board;
         if(top) delete[] top;
-        if(point) delete point;
+        if(point) clearPoint(point);
         if(Banned_point) delete Banned_point;
         if(Last_move) delete Last_move;
     }
