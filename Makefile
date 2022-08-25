@@ -3,4 +3,4 @@
 all: main
 
 main:
-	g++ -O2 sdk/main.cpp sdk/json/jsoncpp.cpp Judge.cpp Strategy.cpp -o main
+	g++ -O2 main.cpp Judge.cpp Strategy.cpp -o main
