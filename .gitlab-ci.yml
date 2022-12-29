@@ -1,4 +1,4 @@
-image: saiblo-upload:0.0.2
+image: saiblo-upload:0.0.3
 
 run:
   script:
