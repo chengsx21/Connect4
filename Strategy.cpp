@@ -1,9 +1,13 @@
 #include <iostream>
 #include <unistd.h>
+#include <ctime>
+#include "Judge.h"
 #include "Point.h"
 #include "Strategy.h"
 
 using namespace std;
+
+clock_t startTime;
 
 /*
 	策略函数接口,该函数被对抗平台调用,每次传入当前状态,要求输出你的落子点,该落子点必须是一个符合游戏规则的落子点,不然对抗平台会直接认为你的程序有误
@@ -29,6 +33,7 @@ using namespace std;
 extern "C" Point *getPoint(const int M, const int N, const int *top, const int *_board,
 						   const int lastX, const int lastY, const int noX, const int noY)
 {
+	startTime = clock();
 	/*
 		不要更改这段代码
 	*/
@@ -48,13 +53,28 @@ extern "C" Point *getPoint(const int M, const int N, const int *top, const int *
 		该部分对参数使用没有限制，为了方便实现，你可以定义自己新的类、.h文件、.cpp文件
 	*/
 	//Add your own code below
+	bool choice = false;
+	for (int i = 0; i <= N - 1; i++) {
+		if (top[i] > 0) {
+			board[top[i] - 1][i] = 2;
+			if (machineWin(top[i] - 1, i, M, N, board)) {
+				choice = true;
+				x = top[i] - 1;
+				y = i;
+				break;
+			}
+			board[top[i] - 1][i] = 0;
+		}
+	}
 
 	//a naive example
-	for (int i = N-1; i >= 0; i--) {
-		if (top[i] > 0) {
-			x = top[i] - 1;
-			y = i;
-			break;
+	if (!choice) {
+		for (int i = N - 1; i >= 0; i--) {
+			if (top[i] > 0) {
+				x = top[i] - 1;
+				y = i;
+				break;
+			}
 		}
 	}
 
