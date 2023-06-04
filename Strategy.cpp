@@ -276,7 +276,7 @@ public:
         else if (isTie(Glob_N, top))
             return 0;
         else
-            return -2;
+            return -6;
     }
 
     /*
@@ -310,7 +310,7 @@ public:
         int y = node->y;
         int count = 0;
         double gain = getGain(++count, player, x, y, board, top);
-        while (fabs(gain + 2) < EPSILON) {
+        while (fabs(gain + 6) < EPSILON) {
             player = PLAYER_SUM - player, y = 0;
             while (true) {
                 int index = rand() % Glob_Sum, index_sum = 0;
